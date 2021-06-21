@@ -14,7 +14,6 @@ public class ShopDTO {
     private String userIdentifier;
     @NotNull
     private float total;
-    @NotNull
     private Date date;
     @NotNull
     private List<ItemDTO> items;
