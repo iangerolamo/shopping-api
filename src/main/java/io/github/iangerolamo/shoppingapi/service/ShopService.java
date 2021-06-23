@@ -22,7 +22,7 @@ public class ShopService {
 
         return shops
                 .stream()
-                .map(ShopDTO::convert)
+                .map(shop -> ShopDTO.convert(shop))
                 .collect(Collectors.toList());
     }
 
@@ -31,7 +31,7 @@ public class ShopService {
                 .findAllByUserIdentifier(userIdentifier);
         return shops
                 .stream()
-                .map(ShopDTO::convert)
+                .map(shop -> ShopDTO.convert(shop))
                 .collect(Collectors.toList());
     }
 
@@ -40,7 +40,7 @@ public class ShopService {
                 .findAllByDateGreaterThan(shopDTO.getDate());
         return shops
                 .stream()
-                .map(ShopDTO::convert)
+                .map(shop -> ShopDTO.convert(shop))
                 .collect(Collectors.toList());
     }
 
