@@ -1,6 +1,7 @@
 package io.github.iangerolamo.shoppingapi.service;
 
 import io.github.iangerolamo.shoppingapi.dto.ShopDTO;
+import io.github.iangerolamo.shoppingapi.dto.ShopReportDTO;
 import io.github.iangerolamo.shoppingapi.model.Shop;
 import io.github.iangerolamo.shoppingapi.repository.ShopRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,5 +63,15 @@ public class ShopService {
         shop.setDate(new Date());
         shop = shopRepository.save(shop);
         return ShopDTO.convert(shop);
+    }
+
+    public List<ShopDTO> getShopsByFilter(Date dataInicio, Date dataFim, Float valorMinimo) {
+        List<Shop> shops = shopRepository.getShopByFilters(dataInicio, dataFim, valorMinimo);
+        return shops.stream().map(ShopDTO::convert).collect(Collectors.toList());
+
+    }
+
+    public ShopReportDTO getReportByDate(Date dataInicio, Date dataFim) {
+        return shopRepository.getReportByDate(dataInicio, dataFim);
     }
 }
